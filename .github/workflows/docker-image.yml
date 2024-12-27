@@ -1,0 +1,42 @@
+openapi: 3.0.0
+info:
+  title: GetInTheQ API
+  version: 1.0.0
+  description: Data Visualization API
+
+servers:
+  - url: https://api.getintheq.io
+    description: Production server
+
+paths:
+  /api/v1/datasets:
+    post:
+      summary: Upload dataset
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Dataset uploaded successfully
+
+  /api/v1/visualize:
+    post:
+      summary: Generate visualization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dataset_id:
+                  type: string
+                visualization_type:
+                  type: string
+                parameters:
+                  type: object
